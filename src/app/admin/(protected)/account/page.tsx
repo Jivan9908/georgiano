@@ -1,0 +1,8 @@
+import { changePasswordAction, updateAccountAction } from "@/app/admin/actions/auth-actions";
+import { AdminNotice, AdminPageHeader } from "@/components/admin/admin-ui";
+import { requireAdmin } from "@/lib/server/auth/session";
+
+export default async function AccountPage({ searchParams }: PageProps<"/admin/account">) {
+  const admin = await requireAdmin(); const params = await searchParams;
+  return <><AdminPageHeader eyebrow="Administrator identity" title="Account" description={admin.email} />{params.success ? <AdminNotice>Account updated.</AdminNotice> : null}{params.error ? <AdminNotice tone="error">{params.error === "current-password" ? "Current password is incorrect." : "New passwords must contain at least 14 characters and differ from the current password."}</AdminNotice> : null}<div className="admin-two-column"><form className="admin-panel admin-form" action={updateAccountAction}><h2>Profile</h2><label>Name<input name="name" defaultValue={admin.name} required /></label><label>Email<input value={admin.email} readOnly /></label><button className="admin-button" type="submit">Save Profile</button></form><form className="admin-panel admin-form" action={changePasswordAction}><h2>Change password</h2><label>Current password<input name="currentPassword" type="password" autoComplete="current-password" required /></label><label>New password<input name="newPassword" type="password" autoComplete="new-password" minLength={14} required /></label><p className="admin-help">Changing your password revokes every active session, including this one.</p><button className="admin-button" type="submit">Change Password</button></form></div></>;
+}

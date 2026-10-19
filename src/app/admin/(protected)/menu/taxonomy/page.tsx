@@ -1,0 +1,10 @@
+import { deleteTaxonomyAction, saveTaxonomyAction } from "@/app/admin/actions/content-actions";
+import { AdminNotice, AdminPageHeader } from "@/components/admin/admin-ui";
+import { getPrisma } from "@/lib/server/database";
+
+export default async function MenuTaxonomyPage({ searchParams }: PageProps<"/admin/menu/taxonomy">) {
+  const params = await searchParams;
+  const [tags, allergens] = await Promise.all([getPrisma().dietaryTag.findMany({ orderBy: { name: "asc" }, include: { _count: { select: { items: true } } } }), getPrisma().allergen.findMany({ orderBy: { name: "asc" }, include: { _count: { select: { items: true } } } })]);
+  const collection = [["Dietary tags", "dietary", tags], ["Allergens", "allergen", allergens]] as const;
+  return <><AdminPageHeader eyebrow="Menu metadata" title="Tags & Allergens" description="Create only verified labels, then explicitly assign them to dishes." />{params.success ? <AdminNotice>Taxonomy changes saved.</AdminNotice> : null}{params.error ? <AdminNotice tone="error">{params.error === "referenced" ? "This value is assigned to menu items and cannot be deleted." : "Type DELETE exactly to confirm."}</AdminNotice> : null}<div className="admin-two-column">{collection.map(([title, kind, records]) => <section className="admin-panel" key={kind}><h2>{title}</h2><form className="admin-form" action={saveTaxonomyAction}><input type="hidden" name="kind" value={kind} /><label>Name<input name="name" required /></label><label>Slug<input name="slug" required /></label><label>Description<input name="description" /></label><button className="admin-button" type="submit">Add</button></form><div className="admin-compact-list">{records.map((record) => <article key={record.id}><div><strong>{record.name}</strong><small>{record._count.items} assignments</small></div><form action={deleteTaxonomyAction}><input type="hidden" name="id" value={record.id} /><input type="hidden" name="kind" value={kind} /><input name="confirmation" placeholder="Type DELETE" aria-label={`Delete confirmation for ${record.name}`} /><button type="submit">Delete</button></form></article>)}</div></section>)}</div></>;
+}

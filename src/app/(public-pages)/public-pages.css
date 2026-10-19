@@ -1,0 +1,135 @@
+.public-header { position: fixed; z-index: 90; inset: 0 0 auto; border-bottom: 1px solid rgba(200,154,88,.2); padding: .75rem 0; background: rgba(16,8,5,.92); box-shadow: 0 12px 40px rgba(0,0,0,.2); backdrop-filter: blur(16px); }
+.public-header .desktop-nav .is-current { color: var(--gold); }
+.public-header .desktop-nav .is-current::after { right: 0; }
+.public-header .nav-reserve.is-current { background: var(--gold); color: var(--deep); }
+.public-page { background: var(--deep); }
+.public-hero, .contact-hero { position: relative; min-height: min(54rem, 92svh); display: grid; align-items: end; overflow: hidden; isolation: isolate; }
+.public-hero > img, .contact-hero > img { z-index: -3; object-fit: cover; }
+.public-hero--reserve > img { object-position: center 60%; }
+.public-hero--private > img { object-position: center 56%; }
+.contact-hero > img { object-position: center; }
+.public-hero__veil { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg, rgba(15,8,5,.95), rgba(23,13,9,.64) 48%, rgba(23,13,9,.14)), linear-gradient(0deg, rgba(23,13,9,.96), transparent 58%); }
+.public-hero__content { padding: 11rem 0 6.5rem; }
+.public-hero__content h1 { margin-bottom: 1.4rem; font-size: clamp(5rem, 10vw, 9.3rem); }
+.public-hero__content h1 em { color: var(--gold); font-weight: 400; }
+.public-hero__content > p:not(.eyebrow) { max-width: 42rem; margin-bottom: 2rem; color: var(--beige); font-size: clamp(1rem, 1.5vw, 1.18rem); }
+.public-hero__content > span { display: inline-block; border-top: 1px solid var(--line); padding-top: .75rem; color: rgba(216,190,163,.66); font-size: .58rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.reservation-wrap { display: grid; align-items: start; gap: clamp(3rem, 7vw, 7rem); grid-template-columns: minmax(18rem,.62fr) minmax(34rem,1.38fr); padding-block: clamp(6rem,10vw,10rem); }
+.reservation-wrap > aside { min-width: 0; position: sticky; top: 8rem; }
+.reservation-wrap aside h2 { font-size: clamp(3.2rem,5vw,5.8rem); }
+.reservation-wrap aside > p:not(.eyebrow), .inquiry-grid > div > p:not(.eyebrow), .contact-grid > div > p { color: var(--beige); }
+.detail-list { margin: 2.5rem 0 0; border-top: 1px solid var(--line); }
+.detail-list div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; border-bottom: 1px solid var(--line); padding-block: 1rem; }
+.detail-list dt { color: var(--gold); font-size: .62rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.detail-list dd { margin: 0; color: var(--beige); font-size: .82rem; }
+.reservation-panel { min-width: 0; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(72,32,19,.38), rgba(16,8,5,.8)); }
+.reservation-progress { display: grid; grid-template-columns: repeat(5,1fr); border-bottom: 1px solid var(--line); }
+.reservation-progress button { min-width: 0; min-height: 5.5rem; border: 0; border-right: 1px solid rgba(200,154,88,.16); padding: 1rem .7rem; background: transparent; color: rgba(216,190,163,.5); font-size: .56rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.reservation-progress button:last-child { border-right: 0; }
+.reservation-progress button:disabled { cursor: default; }
+.reservation-progress button span { display: block; margin-bottom: .35rem; color: rgba(200,154,88,.55); }
+.reservation-progress button.is-active { background: rgba(200,154,88,.08); color: var(--ivory); }
+.reservation-progress button.is-complete { color: var(--gold); }
+.reservation-card { min-height: 38rem; padding: clamp(2rem,5vw,4.5rem); }
+.reservation-card h2 { font-size: clamp(3.2rem,5vw,5rem); }
+.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.35rem 1.5rem; }
+.form-field { min-width: 0; }
+.form-field--wide { grid-column: 1 / -1; }
+.form-field label, .time-fieldset legend { display: block; margin-bottom: .55rem; color: var(--ivory); font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.form-field label span { color: var(--gold); }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 3.5rem; border: 1px solid rgba(200,154,88,.34); border-radius: 0; padding: .85rem 1rem; background: rgba(16,8,5,.58); color: var(--ivory); font: inherit; font-size: .88rem; color-scheme: dark; }
+.form-field textarea { min-height: 9rem; resize: vertical; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--gold); outline: 1px solid var(--gold); outline-offset: 1px; }
+.form-field [aria-invalid="true"] { border-color: #d89275; }
+.field-error, .field-hint { margin: .45rem 0 0; font-size: .68rem; line-height: 1.45; }
+.field-error { color: #edb097; }
+.field-hint { color: rgba(216,190,163,.6); }
+.time-fieldset { margin: 0; border: 0; padding: 0; }
+.time-fieldset legend span { margin-left: .7rem; color: var(--gold); font-size: .52rem; }
+.time-fieldset > p:not(.field-error) { color: var(--beige); font-size: .8rem; }
+.time-options { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; margin-top: 1.5rem; }
+.time-options button { min-height: 3.7rem; border: 1px solid rgba(200,154,88,.35); background: transparent; color: var(--ivory); cursor: pointer; }
+.time-options button:hover, .time-options button.is-selected { border-color: var(--gold); background: var(--gold); color: var(--deep); }
+.form-actions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 3rem; }
+.text-button { border: 0; border-bottom: 1px solid var(--line); padding: .7rem 0; background: transparent; color: var(--gold); font-size: .65rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; cursor: pointer; }
+.development-banner, .form-notice { border-left: 2px solid var(--gold); padding: .85rem 1rem; background: rgba(200,154,88,.07); color: var(--beige); font-size: .74rem; }
+.reservation-review dl { display: grid; grid-template-columns: repeat(2,1fr); margin: 2rem 0 0; border-top: 1px solid var(--line); }
+.reservation-review dl div { border-bottom: 1px solid var(--line); padding: 1rem; }
+.reservation-review dl div:nth-child(odd) { border-right: 1px solid var(--line); }
+.reservation-review dl .wide { grid-column: 1 / -1; border-right: 0; }
+.reservation-review dt { color: var(--gold); font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.reservation-review dd { margin: .4rem 0 0; color: var(--beige); font-size: .8rem; }
+.public-story { padding-block: var(--section); background: radial-gradient(circle at 20% 30%, rgba(72,32,19,.35), transparent 34%), var(--espresso); }
+.split-feature { display: grid; align-items: center; gap: clamp(3rem,8vw,8rem); grid-template-columns: .85fr 1.15fr; }
+.split-feature h2 { font-size: clamp(3.6rem,6vw,6.5rem); }
+.split-feature > div:first-child > p:not(.eyebrow) { color: var(--beige); }
+.development-copy { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1.3rem; font-size: .72rem; }
+.portrait-image { position: relative; min-height: 47rem; overflow: hidden; }
+.portrait-image img { object-fit: cover; }
+.event-types { padding-block: var(--section); }
+.event-types header { max-width: 55rem; margin-bottom: 4rem; }
+.event-grid { display: grid; grid-template-columns: repeat(4,1fr); border-block: 1px solid var(--line); }
+.event-grid article { min-height: 23rem; border-right: 1px solid var(--line); padding: 2rem 1.5rem; }
+.event-grid article:last-child { border-right: 0; }
+.event-grid span { color: var(--gold); font-size: .62rem; letter-spacing: .14em; }
+.event-grid h3 { margin: 5rem 0 1rem; font-size: clamp(2.1rem,3.2vw,3.3rem); }
+.event-grid p { color: var(--beige); font-size: .82rem; }
+.inquiry-section { scroll-margin-top: 7rem; padding-block: var(--section); background: var(--mahogany); }
+.inquiry-grid { display: grid; align-items: start; gap: clamp(3rem,8vw,8rem); grid-template-columns: .72fr 1.28fr; }
+.inquiry-grid > div h2, .contact-grid h2 { font-size: clamp(3.4rem,5.8vw,6rem); }
+.public-form { border-top: 1px solid var(--line); padding-top: 2rem; }
+.public-form > .button { margin-top: 2rem; }
+.form-disclaimer { display: inline-block; margin: 1rem 0 0 1rem; color: rgba(216,190,163,.56); font-size: .62rem; }
+.form-notice { margin: 1.4rem 0 0; }
+.public-cta { padding-block: clamp(7rem,13vw,12rem); text-align: center; background: radial-gradient(circle, rgba(142,73,36,.4), transparent 45%), var(--deep); }
+.public-cta h2 { max-width: 14ch; margin-inline: auto; }
+.contact-hero { min-height: 45rem; }
+.contact-details { padding-block: var(--section); }
+.contact-grid { display: grid; gap: clamp(4rem,8vw,8rem); grid-template-columns: .8fr 1.2fr; }
+.contact-grid > div { min-width: 0; }
+.legal-page { background: var(--deep); }
+.legal-hero { padding: 13rem 0 6rem; border-bottom: 1px solid var(--line); background: radial-gradient(circle at 78% 15%, rgba(72,32,19,.42), transparent 34%), var(--espresso); }
+.legal-hero h1 { max-width: 12ch; font-size: clamp(4.6rem,9vw,8rem); }
+.legal-hero > div > p:not(.eyebrow) { max-width: 45rem; color: var(--beige); }
+.legal-hero span { color: var(--gold); font-size: .58rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.legal-layout { display: grid; align-items: start; gap: clamp(3rem,8vw,8rem); grid-template-columns: 15rem minmax(0,48rem); justify-content: center; padding-block: clamp(5rem,9vw,9rem); }
+.legal-layout aside { position: sticky; top: 8rem; display: grid; gap: .7rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.legal-layout aside p { margin: 0; color: var(--gold); font-size: .65rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.legal-layout aside span { color: rgba(216,190,163,.58); font-size: .68rem; }
+.legal-copy section { margin-bottom: 4rem; }
+.legal-copy h2 { margin-bottom: 1.2rem; font-size: clamp(2.3rem,4vw,3.4rem); line-height: 1.05; }
+.legal-copy p { color: var(--beige); font-size: .95rem; }
+
+@media (max-width: 75rem) { .public-header .menu-toggle { margin-left: 0; } .event-grid { grid-template-columns: repeat(2,1fr); } .event-grid article:nth-child(2) { border-right: 0; } .event-grid article:nth-child(-n+2) { border-bottom: 1px solid var(--line); } }
+@media (max-width: 48rem) {
+  .public-header { padding-block: .55rem; }
+  .public-header .menu-toggle { margin-left: auto; }
+  .public-hero, .contact-hero { min-height: 44rem; }
+  .public-hero > img, .contact-hero > img { object-position: 62% center; }
+  .public-hero__veil { background: linear-gradient(0deg, rgba(15,8,5,.98) 5%, rgba(23,13,9,.68) 68%, rgba(23,13,9,.17)); }
+  .public-hero__content { padding: 9rem 0 4.5rem; }
+  .public-hero__content h1 { font-size: clamp(4.5rem,22vw,6rem); }
+  .reservation-wrap, .split-feature, .inquiry-grid, .contact-grid, .legal-layout { grid-template-columns: 1fr; }
+  .reservation-wrap > aside, .legal-layout aside { position: static; }
+  .reservation-progress { overflow-x: auto; grid-template-columns: repeat(5,7rem); scrollbar-width: none; }
+  .reservation-progress button { min-height: 4.8rem; }
+  .reservation-card { min-height: 34rem; padding: 2rem 1.25rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-field--wide { grid-column: auto; }
+  .time-options { grid-template-columns: repeat(2,1fr); }
+  .form-actions { align-items: stretch; flex-direction: column-reverse; }
+  .form-actions .button { width: 100%; }
+  .text-button { align-self: flex-start; }
+  .portrait-image { min-height: 34rem; }
+  .event-types header { margin-bottom: 2.5rem; }
+  .event-grid { grid-template-columns: 1fr; }
+  .event-grid article { min-height: 16rem; border-right: 0; border-bottom: 1px solid var(--line); }
+  .event-grid article:last-child { border-bottom: 0; }
+  .event-grid h3 { margin-top: 3rem; }
+  .form-disclaimer { display: block; margin-left: 0; }
+  .legal-hero { padding: 10rem 0 4rem; }
+  .legal-layout { gap: 4rem; }
+  .legal-copy section { margin-bottom: 3.2rem; }
+}
+@media (max-width: 25rem) { .reservation-review dl { grid-template-columns: 1fr; } .reservation-review dl div, .reservation-review dl div:nth-child(odd) { grid-column: auto; border-right: 0; } }
+@media (prefers-reduced-motion: reduce) { .public-hero > img, .contact-hero > img { transform: none !important; } }

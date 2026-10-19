@@ -1,0 +1,10 @@
+import { saveSettingsAction } from "@/app/admin/actions/content-actions";
+import { AdminNotice, AdminPageHeader } from "@/components/admin/admin-ui";
+import { getPrisma } from "@/lib/server/database";
+
+export default async function SettingsAdminPage({ searchParams }: PageProps<"/admin/settings">) {
+  const params = await searchParams;
+  const settings = await getPrisma().restaurantSettings.findUniqueOrThrow({ where: { key: "primary" } });
+  const fields = [["Restaurant name", "restaurantName", settings.restaurantName], ["Address line 1", "addressLine1", settings.addressLine1], ["Address line 2", "addressLine2", settings.addressLine2], ["City", "city", settings.city], ["State", "state", settings.state], ["Postal code", "postalCode", settings.postalCode], ["Phone", "phone", settings.phone], ["Email", "email", settings.email], ["Instagram URL", "instagramUrl", settings.instagramUrl], ["Facebook URL", "facebookUrl", settings.facebookUrl], ["Directions URL", "directionsUrl", settings.directionsUrl]] as const;
+  return <><AdminPageHeader eyebrow="Restaurant configuration" title="Settings" description="Unknown business information may remain empty." />{params.success ? <AdminNotice>Restaurant settings saved.</AdminNotice> : null}<form className="admin-panel admin-form" action={saveSettingsAction}><div className="admin-form-grid">{fields.map(([label, name, value]) => <label key={name}>{label}<input name={name} defaultValue={value ?? ""} type={name === "email" ? "email" : name.endsWith("Url") ? "url" : "text"} required={name === "restaurantName"} /></label>)}<label>Timezone<input value="America/Los_Angeles" readOnly aria-readonly="true" /></label><label className="admin-check"><input name="orderingEnabled" type="checkbox" defaultChecked={settings.orderingEnabled} /> Ordering enabled</label></div><p className="admin-help">Directions should remain empty until a confirmed address and destination URL are available.</p><button className="admin-button" type="submit">Save Settings</button></form></>;
+}

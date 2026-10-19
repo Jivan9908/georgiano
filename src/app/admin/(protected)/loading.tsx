@@ -1,0 +1,1 @@
+export default function AdminLoading() { return <div className="admin-empty" role="status"><span aria-hidden="true">◇</span><h2>Loading administration…</h2><p>Retrieving the latest database records.</p></div>; }
