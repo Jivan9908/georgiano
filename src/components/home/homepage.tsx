@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/brand-logo";
+import { restaurantAddress, restaurantDirectionsUrl, restaurantEmail, restaurantHoursSummary, restaurantPhone } from "@/lib/restaurant-contact";
 
 const navItems = [
   { label: "Home", href: "#home" }, { label: "Menu", href: "/menu" },
@@ -34,7 +35,7 @@ export type HomepageData = {
   sections?: Partial<Record<"HERO" | "STORY" | "WINE" | "EXPERIENCE" | "PRIVATE_DINING" | "CONTACT", { eyebrow: string | null; headline: string | null; supportingText: string | null; mediaUrl: string | null; mediaAlt: string | null }>>;
   dishes?: { name: string; description: string; price: string; image: string; position: string }[];
   gallery?: { src: string; alt: string; className: string }[];
-  settings?: { place: string; address: string | null; contact: string | null; hours: string | null; directionsUrl: string | null };
+  settings?: { place: string; address: string | null; phone: string | null; email: string | null; hours: string | null; directionsUrl: string | null };
 };
 
 export function Homepage({ data }: { data?: HomepageData }) {
@@ -45,6 +46,7 @@ export function Homepage({ data }: { data?: HomepageData }) {
   const wineContent = data?.sections?.WINE;
   const experienceContent = data?.sections?.EXPERIENCE;
   const privateContent = data?.sections?.PRIVATE_DINING;
+  const directionsUrl = data?.settings?.directionsUrl || restaurantDirectionsUrl;
   const reduceMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,7 +133,7 @@ export function Homepage({ data }: { data?: HomepageData }) {
 
       <section className="gallery section-pad" id="gallery" aria-labelledby="gallery-title"><div className="page-shell"><motion.div className="section-heading" {...reveal}><p className="eyebrow">Gallery</p><h2 id="gallery-title">A Glimpse<br /><em>of the Table.</em></h2></motion.div><div className="gallery__grid">{gallery.map((image, index) => <motion.button className={`gallery__item ${image.className}`} key={image.src} type="button" onClick={() => setLightbox(index)} aria-label={`Open image ${index + 1} in gallery`} {...reveal}><Image src={image.src} alt={image.alt} fill sizes="(max-width: 768px) 100vw, 55vw" /><span>View <ArrowIcon /></span></motion.button>)}</div></div></section>
 
-      <section className="visit" id="contact"><Image src="/media/visit-entrance.png" alt="A warmly lit restaurant entrance in North Hollywood" fill sizes="100vw" /><div className="visit__veil" /><div className="page-shell visit__content"><motion.div {...reveal}><p className="eyebrow">Location & Contact</p><h2>Visit Georgiano.</h2><p className="visit__place">{data?.settings?.place || "North Hollywood, California"}</p><dl className="visit__details"><div><dt>Address</dt><dd>{data?.settings?.address || "To be configured"}</dd></div><div><dt>Hours</dt><dd>{data?.settings?.hours || "To be configured"}</dd></div><div><dt>Contact</dt><dd>{data?.settings?.contact || "To be configured"}</dd></div></dl><div className="visit__actions">{data?.settings?.directionsUrl ? <Link className="button" href={data.settings.directionsUrl}>Get Directions</Link> : <button className="button button--disabled" type="button" disabled>Get Directions</button>}<Link className="button" href="/reserve">Reserve a Table</Link></div></motion.div></div></section>
+      <section className="visit" id="contact"><Image src="/media/visit-entrance.png" alt="A warmly lit restaurant entrance in North Hollywood" fill sizes="100vw" /><div className="visit__veil" /><div className="page-shell visit__content"><motion.div {...reveal}><p className="eyebrow">Location & Contact</p><h2>Visit Georgiano.</h2><p className="visit__place">{data?.settings?.place || "North Hollywood, California"}</p><dl className="visit__details"><div><dt>Address</dt><dd>{data?.settings?.address || restaurantAddress}</dd></div><div><dt>Hours</dt><dd>{data?.settings?.hours || restaurantHoursSummary}</dd></div><div><dt>Phone</dt><dd><a href={`tel:${(data?.settings?.phone || restaurantPhone).replace(/[^+\d]/g, "")}`}>{data?.settings?.phone || restaurantPhone}</a></dd></div><div><dt>Email</dt><dd><a href={`mailto:${data?.settings?.email || restaurantEmail}`}>{data?.settings?.email || restaurantEmail}</a></dd></div></dl><div className="visit__actions"><Link className="button" href={directionsUrl} target="_blank" rel="noreferrer">Get Directions</Link><Link className="button" href="/reserve">Reserve a Table</Link></div></motion.div></div></section>
     </main>
 
     <footer className="footer"><div className="page-shell footer__top"><div><BrandLogo /><p>Georgian cuisine, wine, and hospitality in North Hollywood.</p></div><nav aria-label="Footer navigation">{navItems.slice(1).map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</nav><div className="footer__reserve"><p>Join us at the table.</p><Link className="button" href="/reserve">Reserve a Table</Link></div></div><div className="page-shell footer__bottom"><span>© 2026 Georgiano</span><div><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms & Conditions</Link></div></div></footer>

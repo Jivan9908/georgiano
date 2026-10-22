@@ -175,10 +175,11 @@ h2 em { color: var(--gold); font-weight: 400; }
 .visit__content > div { max-width: 49rem; }
 .visit h2 { font-size: clamp(4.2rem, 8vw, 8.2rem); text-transform: uppercase; }
 .visit__place { margin-bottom: 2.5rem; color: var(--beige); font-family: var(--font-display); font-size: clamp(1.5rem, 2.4vw, 2.4rem); }
-.visit__details { display: grid; margin: 0 0 2.5rem; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--line); }
+.visit__details { display: grid; margin: 0 0 2.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); border-block: 1px solid var(--line); }
 .visit__details div { padding: 1.2rem 1.5rem 1.2rem 0; }
 .visit__details dt { margin-bottom: .3rem; color: var(--gold); font-size: .62rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
-.visit__details dd { margin: 0; color: var(--beige); font-size: .78rem; }
+.visit__details dd { margin: 0; color: var(--beige); font-size: .78rem; overflow-wrap: anywhere; }
+.visit__details dd a { color: inherit; text-decoration-color: var(--gold); text-underline-offset: .2em; }
 .visit__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
 
 .footer { border-top: 1px solid var(--line); background: #100805; }
