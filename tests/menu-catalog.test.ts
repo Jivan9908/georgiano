@@ -25,13 +25,13 @@ describe("confirmed Georgiano menu catalog", () => {
 
   it("uses the corrected visual mapping for the shifted source files", () => {
     const byId = new Map(menuItems.map((item) => [item.id, item]));
-    expect(byId.get("potato-sulguni-pie")?.image).toBeNull();
-    expect(byId.get("skewered-sulguni-khachapuri")?.image).toContain("/40-");
-    expect(byId.get("kubdari")?.image).toContain("/41-");
-    expect(byId.get("penovani")?.image).toContain("/42-");
-    expect(byId.get("herb-sulguni-kutabi")?.image).toContain("/43-");
-    expect(byId.get("beef-cheburek")?.image).toContain("/44-");
-    expect(byId.get("sulguni-cheburek")?.image).toContain("/45-");
-    expect(byId.get("breaded-house-smoked-sulguni")?.image).toContain("/46-");
+    expect(byId.get("potato-sulguni-pie")?.image).toContain("/40-");
+    expect(byId.get("skewered-sulguni-khachapuri")?.image).toContain("/41-");
+    expect(byId.get("kubdari")?.image).toContain("/42-");
+    expect(byId.get("penovani")?.image).toContain("/43-");
+    expect(byId.get("herb-sulguni-kutabi")?.image).toContain("/44-");
+    expect(byId.get("beef-cheburek")?.image).toContain("/45-");
+    expect(byId.get("sulguni-cheburek")?.image).toContain("/46-");
+    expect(byId.get("breaded-house-smoked-sulguni")?.image).toContain("/47-");
   });
 });
